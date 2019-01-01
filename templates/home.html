@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Is This Your Card</title>
+
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    
+    <!-- jQuery -->
+    <script src="http://ityc.s3.amazonaws.com/jquery.js"></script>
+
+</head>
+
+<body class="home">
+    <div id="content" class="autoclear">
+        <div id="main">
+            <div class="card" style="display:none; width: 300px; margin: 100px auto 15px auto;">
+                <img src="http://ityc.s3.amazonaws.com/cards/{{ card }}{{ suite }}.png"/>
+            </div>
+
+            <script>
+            $(document).ready(function() {
+              $('div.card').delay(3000).fadeIn(2000);
+            });
+            </script>
+
+        </div>
+    </div>
+</body>
+</html>
