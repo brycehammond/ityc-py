@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, request, jsonify
 import boto3
 
 app = Flask(__name__)
@@ -10,7 +10,22 @@ db = dynamodb.Table('ityc')
 @app.route("/")
 def home():
     record = db.get_item(Key={'id': 'card'})['Item']
-    return render_template('home.html', card = record['value'], suit = record['suit'])
+    return render_template('home.html', card = record['card'].upper(), suit = record['suit'].lower())
 
+@app.route('/update', methods = ['POST'])
+def update():
+    #get the data from the request
+    request_data = request.get_json()
+    card = request_data['card'].upper()
+    suit = request_data['suit'].lower()
+
+    #update the record
+    res = db.update_item(
+        Key={'id': 'card'},
+        UpdateExpression='set card=:card, suit=:suit',
+        ExpressionAttributeValues={':card': card, ':suit': suit},
+    )
+    return jsonify({'card': card, 'suit': suit})
+    
 if __name__ == "__main__":
     app.run(debug=True)
