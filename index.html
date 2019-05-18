@@ -26,7 +26,7 @@
     <div id="content" class="autoclear">
         <div id="main">
             <div class="card" style="width: 300px; margin: 100px auto 15px auto;">
-                <img src="/cards/3c.png"/>
+                <img id="cardimage"/>
             </div>
         </div>
     </div>
@@ -34,12 +34,12 @@
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 300) {
+                console.log(JSON.parse(xhr.responseText));
+                var response = JSON.parse(xhr.responseText);
+                document.getElementById("cardimage").src = "cards/" + response.card + response.suit + ".png";
                 setTimeout(function () {
                     document.body.className = '';
                 }, 3000);
-                console.log('success!', xhr);
-            } else {
-                console.log('The request failed!');
             }
         };
 
