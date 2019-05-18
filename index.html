@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Is This Your Card</title>
+
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <style>
+        body {
+            opacity: 1;
+            transition: 3.0s opacity;
+        }
+
+        body.fade {
+            opacity: 0;
+            transition: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        document.body.className = 'fade';
+    </script>
+    <div id="content" class="autoclear">
+        <div id="main">
+            <div class="card" style="width: 300px; margin: 100px auto 15px auto;">
+                <img src="/cards/3c.png"/>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            setTimeout(function () {
+                document.body.className = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

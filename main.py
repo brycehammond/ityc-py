@@ -10,7 +10,7 @@ db = dynamodb.Table('ityc')
 @app.route("/")
 def home():
     record = db.get_item(Key={'id': 'card'})['Item']
-    return render_template('home.html', card = record['card'].upper(), suit = record['suit'].lower())
+    return jsonify({'card': record['card'].upper(), 'suit': record['suit'].lower()})
 
 @app.route('/update', methods = ['POST'])
 def update():
