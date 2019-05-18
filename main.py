@@ -7,6 +7,13 @@ app = Flask(__name__)
 dynamodb = boto3.resource('dynamodb')
 db = dynamodb.Table('ityc')
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
+
 @app.route("/")
 def home():
     record = db.get_item(Key={'id': 'card'})['Item']
