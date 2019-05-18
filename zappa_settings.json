@@ -5,6 +5,7 @@
         "profile_name": "default", 
         "project_name": "ityc-py", 
         "runtime": "python2.7", 
-        "s3_bucket": "ityc"
+        "s3_bucket": "www.isthisyourcard.net",
+        "enable_cors": true
     }
 }

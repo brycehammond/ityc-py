@@ -31,10 +31,22 @@
         </div>
     </div>
     <script>
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                setTimeout(function () {
+                    document.body.className = '';
+                }, 3000);
+                console.log('success!', xhr);
+            } else {
+                console.log('The request failed!');
+            }
+        };
+
         document.addEventListener("DOMContentLoaded", function(e) {
-            setTimeout(function () {
-                document.body.className = '';
-            }, 3000);
+            xhr.open('GET', 'https://i8o91xddb2.execute-api.us-east-1.amazonaws.com/dev');
+            xhr.send();
+            
         });
     </script>
 </body>
